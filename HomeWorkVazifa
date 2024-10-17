@@ -1,0 +1,136 @@
+# vazifa_1
+# def closure (number):
+#     def inner(x):
+#         return number + x
+#     return inner
+# check=closure(14)
+# i=1
+# if check ==1:
+#     i+=1
+# print(check(i))
+
+# vazifa_2 
+# def multiplay (number):
+#     def inner(factor):
+#         return number *factor
+#     return inner
+# hsoblagich=multiplay(10)
+# print(hsoblagich(3))
+# vazifa_3 
+# number=[1,2,4,5,7,8,10]
+# def closer(number):
+# #     def inner(factor):
+# #         return [i * factor for i in number]
+# #     return inner
+
+# # result=closer(number)
+# # print(result(10))
+
+# # vazifa_4
+# # def multiplay(number):
+# #     def inner(factor):
+# #         return number - factor  
+# #     def inner2(factor2):
+# #         return inner(factor2) + 51
+# #     return inner2
+
+# # hsoblagich = multiplay(15)
+# # hsoblagich2 = hsoblagich(4)
+# # print(hsoblagich2)  
+
+# # vazifa_5
+# # def new_chegirma (chegirma):
+# #     def apply_discount(original_price):
+# #         discount_amount = (chegirma / 100) * original_price
+# #         updated_price = original_price - discount_amount
+# #         return updated_price
+# #     return apply_discount
+
+# # skidka= new_chegirma(9.999)
+
+# # original_price = 100
+# # new_price =skidka (original_price)
+
+# # print(f"Asl narx: {original_price} so'm, Yangilangan narx: {new_price} so'm")
+
+# # vazifa_6
+# def start_time():
+#     count = 0
+
+#     def login():
+#         nonlocal count
+#         count += 1
+#         return count
+#     return login
+
+
+# user_login = start_time()
+
+# print(user_login())  
+# print(user_login())  
+# print(user_login())  
+ 
+# vazifa_7
+# def create_password_checker(correct_password):
+#     def check_password(input_password):
+#         if input_password == correct_password:
+#             return "To'g'ri parol!"
+#         else:
+#             return "Noto'g'ri parol!"
+#     return check_password
+
+# correct_password = "a1100130a"
+# password_checker = create_password_checker(correct_password)
+
+# user_input = input("Parolni kiriting: ")
+# result = password_checker(user_input)
+
+# print(result)
+
+# -----------------------------------------------bot----------------------------start-------------------------------------------------------------------------------    
+# bot bot bot 
+# from telebot import telebot
+# from telebot import types
+
+
+# API_TOKEN = '7845283714:AAHUa7opqsPb-tXshRRI1bbHkJ5kfFlcnZY'
+# bot = telebot.TeleBot(API_TOKEN)
+
+
+# user_plans = {}
+
+# @bot.message_handler(commands=['start'])
+# def start(message):
+#     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+#     add_plan_button = types.KeyboardButton("asalomu alaykum kunlik rejalaringizni qoshing ")
+#     view_plans_button = types.KeyboardButton("Rejani korish")
+#     keyboard.add(add_plan_button, view_plans_button)
+    
+#     bot.send_message(message.chat.id, "Tanlang:", reply_markup=keyboard)
+
+# @bot.message_handler(func=lambda message: message.text == "Reja qoshish")
+# def add_plan(message):
+#     bot.send_message(message.chat.id, "Kunlik rejangizni yozing:")
+#     bot.register_next_step_handler(message, save_plan)
+
+# def save_plan(message):
+#     user_id = message.chat.id
+#     plan_text = message.text
+    
+#     if user_id not in user_plans:
+#         user_plans[user_id] = []
+    
+#     user_plans[user_id].append(plan_text)
+#     bot.send_message(user_id, "Reja qo'shildi! Yana reja qo'shmoqchimisiz? /start tugmasini bosing.")
+
+# @bot.message_handler(func=lambda message: message.text == "Rejani korish")
+# def view_plans(message):
+#     user_id = message.chat.id
+#     plans = user_plans.get(user_id, [])
+    
+#     if plans:
+#         bot.send_message(user_id, "Sizning kunlik rejalar:\n" + "\n".join(plans))
+#     else:
+#         bot.send_message(user_id, "Sizda hech qanday reja yo'q.")
+
+# bot.polling()
